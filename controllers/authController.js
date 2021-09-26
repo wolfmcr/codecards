@@ -1,13 +1,15 @@
 const User = require('../models/User');
+const Deck = require('../models/Deck');
+const Card = require('../models/Card');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const defaultCards = require('../userData/defaultCards');
 module.exports = {
   registerUser: async (req, res) => {
     const { name, email, password } = req.body;
     //check all fields
     if (!name || !email || !password) {
-      return res.status(400).json({ msg: 'Enter All Fields' });
+      return res.status(400).json({ msg: 'Please Enter All Fields' });
     }
     //check if user exists
     User.findOne({ email }).then((user) => {
@@ -20,6 +22,10 @@ module.exports = {
         email,
         password
       });
+      newUser.decks = [Deck({ deckName: 'Javascript Basics' })];
+      newUser.cards = defaultCards.map((card) =>
+        Card({ ...card, deck: newUser.decks[0]._id })
+      );
 
       //create salt & hash
       bcrypt.genSalt(10, (err, salt) => {
@@ -42,7 +48,9 @@ module.exports = {
                   user: {
                     id: user.id,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    decks: user.decks,
+                    cards: user.cards
                   }
                 });
               }
@@ -84,7 +92,9 @@ module.exports = {
               user: {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                decks: user.decks,
+                cards: user.cards
               }
             });
           }
