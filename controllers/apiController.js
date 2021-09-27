@@ -1,6 +1,6 @@
-const Card = require('../models/Card');
 const User = require('../models/User');
-const Deck = require('../models/Deck');
+const Card = require('../models/Card').model;
+const Deck = require('../models/Deck').model;
 module.exports = {
   makeCard: async (req, res) => {
     let user = await User.findOne({ _id: req.user.id });

@@ -10,4 +10,7 @@ const cardSchema = new Schema({
   createdAt: { type: Date, default: Date.now() }
 });
 
-module.exports = mongoose.model('card', cardSchema);
+module.exports = {
+  model: mongoose.model('card', cardSchema),
+  schema: cardSchema
+};
