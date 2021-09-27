@@ -3,6 +3,10 @@
 }
 
 .CodeMirror {
+  height: 176px;
+}
+
+.studyCode .CodeMirror {
   height: auto;
 }
 

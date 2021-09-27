@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import logo from '../img/whitelogo.svg';
-import fullLogo from '../img/white.svg';
 import {
   Collapse,
   Navbar,
@@ -9,9 +6,11 @@ import {
   Nav,
   NavItem,
   NavLink,
-  NavbarText,
   Container
 } from 'reactstrap';
+import { useState } from 'react';
+import logo from '../img/whitelogo.svg';
+import fullLogo from '../img/white.svg';
 import CardModal from '../components/cardFormComponents/CardModal';
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
@@ -53,14 +52,9 @@ function AppNavbar(props) {
 
   return (
     <div>
-      <Navbar
-        color="dark"
-        dark
-        expand="sm"
-        className="mb-5 d-flex justify-content-between"
-      >
-        <Container className="">
-          <NavbarBrand style={{ height: '50%', width: 'fit-content' }}>
+      <Navbar color="dark" dark expand="sm" className="mb-5 ">
+        <Container className="d-flex ">
+          <NavbarBrand>
             <img
               src={fullLogo}
               alt=""
@@ -69,7 +63,7 @@ function AppNavbar(props) {
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar className="">
-            <Nav className="ml-auto d-flex justify-content-end" navbar>
+            <Nav className="w-100 d-flex justify-content-end" navbar>
               {props.auth.isAuthenticated ? authLinks : guestLinks}
             </Nav>
           </Collapse>

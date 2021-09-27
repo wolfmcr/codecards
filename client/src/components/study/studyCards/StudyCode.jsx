@@ -20,6 +20,7 @@ export default function StudyCode(props) {
     <div className="mb-3">
       {code !== '' && (
         <CodeMirror
+          className="studyCode"
           value={props.value}
           editorDidMount={(editor, doc) => {
             console.log(editor);

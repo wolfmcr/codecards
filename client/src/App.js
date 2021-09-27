@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './global.css';
+import './styles/global.css';
 
 function App() {
   useEffect(() => {
