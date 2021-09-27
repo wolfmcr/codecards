@@ -1,0 +1,11 @@
+.CodeMirror-gutter-wrapper {
+  left: -29px !important;
+}
+
+.CodeMirror {
+  height: auto;
+}
+
+.CodeMirror-vscrollbar {
+  display: none !important;
+}

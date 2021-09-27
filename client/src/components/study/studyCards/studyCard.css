@@ -1,0 +1,13 @@
+.studyCard-enter {
+  opacity: 1;
+}
+.studyCard-enter-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.studyCard-exit {
+  opacity: 0;
+}
+.studyCard-exit-active {
+  opacity: 0;
+}
