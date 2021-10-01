@@ -10,7 +10,7 @@
     "server": "nodemon index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "aws-build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm install && npm run build --prefix client"
+    "aws-build": "npm install --prefix client && npm install && npm run build --prefix client"
   },
   "keywords": [
     "flashcards",
