@@ -1,9 +1,20 @@
+html,
+body {
+  height: 100%;
+}
+
 .CodeMirror-gutter-wrapper {
   left: -29px !important;
+  padding: 0 1%;
 }
 
 .CodeMirror {
   height: 176px;
+}
+
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
+  padding: 0 8px; /* Horizontal padding of content */
 }
 
 .studyCode .CodeMirror {
@@ -12,4 +23,25 @@
 
 .CodeMirror-vscrollbar {
   display: none !important;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.landing {
+  position: relative;
+  width: 100%;
+}
+
+.landing-left,
+.landing-right {
+  width: 100%;
+  padding: 1rem;
 }

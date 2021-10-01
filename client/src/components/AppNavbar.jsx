@@ -16,11 +16,12 @@ import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 import { connect } from 'react-redux';
+import { useMediaQuery } from '@mui/material';
 
 function AppNavbar(props) {
   //navbar toggle state
   const [isOpen, setOpen] = useState(false);
-
+  const mobile = useMediaQuery('(max-width:600px)');
   const toggle = () => {
     setOpen(!isOpen);
   };
@@ -30,10 +31,12 @@ function AppNavbar(props) {
       <NavItem>
         {props.auth.user && <NavLink>Hi {props.auth.user.name} </NavLink>}
       </NavItem>
-      <NavItem>
-        <CardModal></CardModal>
+      <NavItem onClick={mobile ? toggle : null}>
+        <CardModal
+          card={props.auth.isAuthenticated ? props.auth.user.cards : null}
+        />
       </NavItem>
-      <NavItem>
+      <NavItem onClick={mobile ? toggle : null}>
         <Logout></Logout>
       </NavItem>
     </>
@@ -41,11 +44,11 @@ function AppNavbar(props) {
 
   const guestLinks = (
     <>
-      <NavItem>
-        <RegisterModal></RegisterModal>
+      <NavItem onClick={mobile ? toggle : null}>
+        <RegisterModal />
       </NavItem>
-      <NavItem>
-        <LoginModal></LoginModal>
+      <NavItem onClick={mobile ? toggle : null}>
+        <LoginModal />
       </NavItem>
     </>
   );

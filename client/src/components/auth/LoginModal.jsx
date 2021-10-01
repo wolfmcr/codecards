@@ -7,11 +7,10 @@ import {
   ModalHeader,
   ModalBody,
   Label,
-  Input,
-  Card,
-  CardTitle
+  Input
 } from 'reactstrap';
 import PropTypes from 'prop-types';
+import ModalCloseBtn from '../ModalCloseBtn';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
 import { login } from '../../actions/authActions';
@@ -48,7 +47,9 @@ function LoginModal(props) {
     <div>
       <NavLink onClick={toggle}>Login</NavLink>
       <Modal toggle={toggle} isOpen={isOpen}>
-        <ModalHeader toggle={toggle}>Login</ModalHeader>
+        <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
+          Login
+        </ModalHeader>
         <ModalBody>
           {error && <Alert color="danger">{error}</Alert>}
           <Form

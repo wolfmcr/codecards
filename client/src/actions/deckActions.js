@@ -9,15 +9,12 @@ export const addDeck = (data) => (dispatch, getState) => {
 };
 
 export const deleteDeck = (id) => (dispatch, getState) => {
-  console.log(id);
-  axios
-    .delete(`/api/delete-deck/${id}`, tokenConfig(getState))
-    .then((res) =>
-      dispatch({
-        type: DELETE_DECK,
-        payload: { cards: res.data.cards, decks: res.data.decks }
-      })
-    );
+  axios.delete(`/api/delete-deck/${id}`, tokenConfig(getState)).then((res) =>
+    dispatch({
+      type: DELETE_DECK,
+      payload: { cards: res.data.cards, decks: res.data.decks }
+    })
+  );
 };
 
 export const updateDeck = (id) => (dispatch, getState) => {};

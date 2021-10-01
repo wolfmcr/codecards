@@ -7,10 +7,9 @@ import {
   ModalHeader,
   ModalBody,
   Label,
-  Input,
-  Card,
-  CardTitle
+  Input
 } from 'reactstrap';
+import ModalCloseBtn from '../ModalCloseBtn';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Field } from 'react-final-form';
@@ -46,7 +45,9 @@ function RegisterModal(props) {
     <div>
       <NavLink onClick={toggle}>Register</NavLink>
       <Modal toggle={toggle} isOpen={isOpen}>
-        <ModalHeader toggle={toggle}>Register</ModalHeader>
+        <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
+          Register
+        </ModalHeader>
         <ModalBody>
           {error && <Alert color="danger">{error}</Alert>}
           <Form
