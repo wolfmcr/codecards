@@ -3,10 +3,7 @@ import { tokenConfig } from './authActions';
 import axios from 'axios';
 
 export const deleteCard = (id) => (dispatch, getState) => {
-  return {
-    type: DELETE_CARD,
-    payload: id
-  };
+  console.log(id);
 };
 
 export const updateCard = (id) => (dispatch, getState) => {};
