@@ -14,7 +14,9 @@ export default function StudyCard(props) {
   const nextCard = () => {
     if (index < props.card.length - 1) {
       flipCard();
-      setIndex(index + 1);
+      setTimeout(() => {
+        setIndex(index + 1);
+      }, 300);
     } else {
       props.toggle();
     }
