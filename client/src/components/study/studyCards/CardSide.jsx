@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
-import {
-  Card,
-  CardTitle,
-  CardBody,
-  Button,
-  CardFooter,
-  CardHeader
-} from 'reactstrap';
+import { Card, CardBody, Button, CardFooter } from 'reactstrap';
 
 import { CSSTransition } from 'react-transition-group';
 import StudyCode from './StudyCode';
 import StudyText from './StudyText';
-import PopoverMenu from './PopoverMenu';
+
 import './studyCard.css';
 export default function CardSide(props) {
   const [fade, setFade] = useState(false);
@@ -31,9 +24,11 @@ export default function CardSide(props) {
       <Button className="me-1 mb-3" color="dark" onClick={flip}>
         Flip
       </Button>
-      <Button className="me-1 mb-3" color="dark" onClick={next}>
-        {props.buttonText}
-      </Button>
+      {props.buttonText && (
+        <Button className="me-1 mb-3" color="dark" onClick={next}>
+          {props.buttonText}
+        </Button>
+      )}
     </>
   );
 
@@ -46,34 +41,26 @@ export default function CardSide(props) {
   );
 
   return (
-    <Card style={{ width: '99%', minHeight: '66vh' }}>
-      <CardHeader className="p-3 d-flex justify-content-between">
-        <CardTitle className="p-3 d-flex justify-content-between">
-          <h5>{props.number}</h5>
-        </CardTitle>
-        <PopoverMenu></PopoverMenu>
-      </CardHeader>
-      <CSSTransition classNames="studyCard" in={fade} timeout={300}>
-        <div
-          className="d-flex flex-column justify-content-between"
-          style={{ height: '60vh' }}
+    <Card style={props.mobile ? { minHeight: '80vh' } : { minHeight: '66vh' }}>
+      <>
+        <CardBody className="d-flex flex-column">
+          {props.card[props.side].map((el) => (
+            <>
+              {el.type === 'code' ? (
+                <StudyCode value={el['code']} />
+              ) : (
+                <StudyText value={el['text']} />
+              )}
+            </>
+          ))}
+        </CardBody>
+        <CardFooter
+          className="d-flex justify-content-center"
+          style={{ justifySelf: 'end' }}
         >
-          <CardBody>
-            {props.card[props.side].map((el) => (
-              <>
-                {el.type === 'code' ? (
-                  <StudyCode value={el['code']} />
-                ) : (
-                  <StudyText value={el['text']} />
-                )}
-              </>
-            ))}
-          </CardBody>
-          <CardFooter className="d-flex justify-content-center">
-            {props.side === 'front' ? frontButtons : backButtons}
-          </CardFooter>
-        </div>
-      </CSSTransition>
+          {props.side === 'front' ? frontButtons : backButtons}
+        </CardFooter>
+      </>
     </Card>
   );
 }

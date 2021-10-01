@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Label,
-  Card,
-  CardTitle
-} from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import StudyCard from './studyCards/StudyCard';
+import { useMediaQuery } from '@mui/material';
+import ModalCloseBtn from '../ModalCloseBtn';
 import { connect } from 'react-redux';
 
 function StudyModal(props) {
+  const mobile = useMediaQuery('(max-width: 600px)');
   const [isOpen, setOpen] = useState(false);
 
   const toggle = () => {
@@ -25,11 +20,17 @@ function StudyModal(props) {
       <Modal
         isOpen={isOpen}
         toggle={toggle}
-        style={{ width: '90vw', maxWidth: '1500px' }}
+        style={mobile ? {} : { width: '90vw', maxWidth: '1500px' }}
       >
-        <ModalHeader toggle={toggle}>{props.deck}</ModalHeader>
+        <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
+          {props.deck}
+        </ModalHeader>
         <ModalBody className="d-flex justify-content-center">
-          <StudyCard card={props.card} toggle={toggle}></StudyCard>
+          <StudyCard
+            mobile={mobile}
+            card={props.card}
+            toggle={toggle}
+          ></StudyCard>
         </ModalBody>
       </Modal>
     </div>

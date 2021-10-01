@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   NavLink,
   Button,
@@ -6,9 +6,7 @@ import {
   ModalHeader,
   ModalBody,
   Label,
-  Input,
-  Card,
-  CardTitle
+  Input
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardActions';
@@ -17,7 +15,10 @@ import { useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
-import CouldBe from './inputs/CouldBe';
+import CodeBlockInput from './inputs/CodeBlockInput';
+import TextInput from './inputs/TextInput';
+import ModalCloseBtn from '../ModalCloseBtn';
+
 function CardModal(props) {
   const [isOpen, setOpen] = useState(false);
 
@@ -35,12 +36,13 @@ function CardModal(props) {
       <NavLink color="dark" onClick={toggle}>
         Add Card
       </NavLink>
+
       <Modal
         isOpen={isOpen}
         toggle={toggle}
         style={{ width: '90vw', maxWidth: '1500px' }}
       >
-        <ModalHeader toggle={toggle} className="pt-1 pb-1 ">
+        <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
           <h4 className="text-pink">Add a new card</h4>
         </ModalHeader>
         <ModalBody className="pt-1">
@@ -64,9 +66,8 @@ function CardModal(props) {
               values
             }) => (
               <form onSubmit={handleSubmit}>
-                <div className="d-flex flex-column w-25 mb-3">
+                <div className="d-flex flex-column mb-3 w-25">
                   <Label htmlFor="deck">Deck:</Label>
-
                   <Field
                     name="deck"
                     type="select"
@@ -81,10 +82,7 @@ function CardModal(props) {
                     )}
                   />
                 </div>
-                <div
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
-                  className="mb-3"
-                >
+                <div className={'d-flex justify-content-between flex-row '}>
                   <CreateCard
                     title="Front"
                     addCode={() => {
@@ -109,11 +107,19 @@ function CardModal(props) {
                               name={`${name}${values.front[index].type}`}
                               render={(props) => {
                                 return (
-                                  <CouldBe
-                                    {...props}
-                                    remove={() => fields.remove(index)}
-                                    type={values.front[index].type}
-                                  />
+                                  <>
+                                    {values.front[index].type === 'code' ? (
+                                      <CodeBlockInput
+                                        {...props}
+                                        remove={() => fields.remove(index)}
+                                      />
+                                    ) : (
+                                      <TextInput
+                                        {...props}
+                                        remove={() => fields.remove(index)}
+                                      />
+                                    )}
+                                  </>
                                 );
                               }}
                             ></Field>
@@ -146,11 +152,19 @@ function CardModal(props) {
                               name={`${name}${values.back[index].type}`}
                               render={(props) => {
                                 return (
-                                  <CouldBe
-                                    {...props}
-                                    remove={() => fields.remove(index)}
-                                    type={values.back[index].type}
-                                  />
+                                  <>
+                                    {values.back[index].type === 'code' ? (
+                                      <CodeBlockInput
+                                        {...props}
+                                        remove={() => fields.remove(index)}
+                                      />
+                                    ) : (
+                                      <TextInput
+                                        {...props}
+                                        remove={() => fields.remove(index)}
+                                      />
+                                    )}
+                                  </>
                                 );
                               }}
                             ></Field>

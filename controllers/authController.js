@@ -1,9 +1,9 @@
-const User = require('../models/User');
-const Deck = require('../models/Deck');
-const Card = require('../models/Card');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const defaultCards = require('../userData/defaultCards');
+const User = require('../models/User');
+const Deck = require('../models/Deck').model;
+const Card = require('../models/Card').model;
 module.exports = {
   registerUser: async (req, res) => {
     const { name, email, password } = req.body;

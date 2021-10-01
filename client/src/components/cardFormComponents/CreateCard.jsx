@@ -11,7 +11,10 @@ import React from 'react';
 
 export default function CreateCard(props) {
   return (
-    <Card style={{ width: '45%', minHeight: '66vh' }}>
+    <Card
+      style={{ minHeight: '66vh', width: '45%' }}
+      className={'mb-3' + (props.mobile ? '' : '')}
+    >
       <CardHeader>
         <CardTitle className="p-3">
           <h5>{props.title}</h5>

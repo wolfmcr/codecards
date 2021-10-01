@@ -28,11 +28,14 @@ export default function StudyCard(props) {
     <>
       <ReactCardFlip
         isFlipped={isFlipped}
-        containerStyle={{ width: '45%' }}
+        containerStyle={
+          props.mobile || props.landing ? { width: '100%' } : { width: '45%' }
+        }
         flipSpeedBackToFront={1}
         flipSpeedFrontToBack={1}
       >
         <CardSide
+          mobile={props.mobile}
           title="Front"
           side="front"
           card={card}
@@ -41,13 +44,16 @@ export default function StudyCard(props) {
           isFlipped={isFlipped}
         ></CardSide>
         <CardSide
+          mobile={props.mobile}
           title="Back"
           side="back"
           isFlipped={isFlipped}
           buttonText={
-            index < props.card.length - 1 || isFlipped === false
-              ? 'Next'
-              : 'Finish'
+            !props.landing
+              ? index < props.card.length - 1 || isFlipped === false
+                ? 'Next'
+                : 'Finish'
+              : null
           }
           card={card}
           nextCard={nextCard}

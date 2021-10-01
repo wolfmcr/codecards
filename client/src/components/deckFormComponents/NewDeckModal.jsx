@@ -7,6 +7,7 @@ import {
   Input,
   Label
 } from 'reactstrap';
+import ModalCloseBtn from '../ModalCloseBtn';
 import { Form, Field } from 'react-final-form';
 import { addDeck } from '../../actions/deckActions';
 import { connect } from 'react-redux';
@@ -25,7 +26,9 @@ function NewDeckModal(props) {
         +
       </Button>
       <Modal isOpen={isOpen} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Add a new Deck</ModalHeader>
+        <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
+          Add a new Deck
+        </ModalHeader>
         <ModalBody>
           <Form
             onSubmit={handleSubmit}

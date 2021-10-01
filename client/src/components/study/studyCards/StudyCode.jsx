@@ -31,7 +31,8 @@ export default function StudyCode(props) {
             theme: 'material',
             lineNumbers: true,
             readOnly: 'nocursor',
-            lineWrapping: true
+            lineWrapping: true,
+            coverGutterNextToScrollbar: true
           }}
         />
       )}

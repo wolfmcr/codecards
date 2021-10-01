@@ -11,6 +11,7 @@ export default function DeleteDeckModal(props) {
 
   const handleDeleteClick = () => {
     props.deleteDeck(props.deckId);
+    toggle();
   };
   return (
     <div>
