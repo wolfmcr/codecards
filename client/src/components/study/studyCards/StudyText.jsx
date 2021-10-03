@@ -6,7 +6,9 @@ export default function StudyText(props) {
     <div className="mb-3">
       <Card>
         <CardBody>
-          <p style={{ textAlign: 'center' }}>{props.value}</p>
+          <p style={{ textAlign: 'center' }} className="mb-0">
+            {props.value}
+          </p>
         </CardBody>
       </Card>
     </div>
