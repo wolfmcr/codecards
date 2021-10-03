@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 import { FormGroup, Input, FormFeedback, Button } from 'reactstrap';
-import { UnControlled as CodeMirror } from 'react-codemirror2';
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/theme/3024-night.css';
@@ -16,7 +16,6 @@ export default function CodeBlockInput(props) {
     setCode(editor.doc.getValue());
   };
 
-  const deleteClick = () => {};
   return (
     <div className="mb-3" style={{ position: 'relative' }}>
       <Button
@@ -46,8 +45,7 @@ export default function CodeBlockInput(props) {
           theme: 'material',
           lineNumbers: true
         }}
-        onChange={(a, b, c) => {
-          console.log(a);
+        onBeforeChange={(a, b, c) => {
           props.input.onChange(c);
         }}
       />

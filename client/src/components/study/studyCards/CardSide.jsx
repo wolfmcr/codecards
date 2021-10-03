@@ -41,7 +41,13 @@ export default function CardSide(props) {
   );
 
   return (
-    <Card style={props.mobile ? { minHeight: '80vh' } : { minHeight: '66vh' }}>
+    <Card
+      style={
+        props.mobile
+          ? { minHeight: '80vh' }
+          : { maxHeight: '800px', height: '80vh' }
+      }
+    >
       <>
         <CardBody className="d-flex flex-column">
           {props.card[props.side].map((el) => (
