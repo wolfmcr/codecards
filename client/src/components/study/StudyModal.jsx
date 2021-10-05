@@ -2,15 +2,25 @@ import React, { useState } from 'react';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import StudyCard from './studyCards/StudyCard';
 import { useMediaQuery } from '@mui/material';
-import ModalCloseBtn from '../ModalCloseBtn';
+import StudyModalActions from './cardActionModals/StudyModalActions';
 import { connect } from 'react-redux';
 
 function StudyModal(props) {
   const mobile = useMediaQuery('(max-width: 600px)');
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [editIsOpen, setEditIsOpen] = useState(false);
+  const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
   const toggle = () => {
-    setOpen(!isOpen);
+    setIsOpen(!isOpen);
+  };
+
+  const toggleDelete = () => {
+    setDeleteIsOpen(!deleteIsOpen);
+  };
+
+  const toggleEdit = () => {
+    setEditIsOpen(!editIsOpen);
   };
   return (
     <div className="ms-3">
@@ -26,7 +36,18 @@ function StudyModal(props) {
         toggle={toggle}
         style={mobile ? {} : { width: '90vw', maxWidth: '1500px' }}
       >
-        <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
+        <ModalHeader
+          toggle={toggle}
+          close={
+            <StudyModalActions
+              modals={{
+                close: toggle,
+                delete: { toggle: toggleDelete, isOpen: deleteIsOpen },
+                edit: { toggle: toggleEdit, isOpen: editIsOpen }
+              }}
+            />
+          }
+        >
           {props.deck}
         </ModalHeader>
         <ModalBody className="d-flex justify-content-center">
