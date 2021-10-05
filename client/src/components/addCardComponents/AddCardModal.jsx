@@ -6,7 +6,10 @@ import {
   ModalHeader,
   ModalBody,
   Label,
-  Input
+  Input,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardActions';
@@ -58,7 +61,7 @@ function AddCardModal(props) {
             render={({
               handleSubmit,
               form: {
-                mutators: { push, pop, remove }
+                mutators: { push }
               }, // injected from final-form-arrays above
               pristine,
               form,
@@ -73,7 +76,12 @@ function AddCardModal(props) {
                     type="select"
                     render={(propers) => (
                       <>
-                        <Input type="select" {...propers.input} id="deck">
+                        <Input
+                          type="select"
+                          {...propers.input}
+                          id="deck"
+                          className="form-select"
+                        >
                           {props.decks.map((deck) => (
                             <option value={deck._id}>{deck.deckName}</option>
                           ))}
