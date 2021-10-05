@@ -13,8 +13,12 @@ function StudyModal(props) {
     setOpen(!isOpen);
   };
   return (
-    <div>
-      <a className="link-primary user-select-none " href="#" onClick={toggle}>
+    <div className="ms-3">
+      <a
+        className="link-primary user-select-none text-decoration-none"
+        href="#"
+        onClick={toggle}
+      >
         Study
       </a>
       <Modal

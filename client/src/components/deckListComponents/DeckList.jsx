@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import StudyModal from '../study/StudyModal';
-import NewDeckModal from '../deckFormComponents/NewDeckModal';
+import NewDeckModal from '../addDeckComponents/NewDeckModal';
 import { connect } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 
@@ -16,14 +16,21 @@ function DeckList(props) {
           <ListGroup>
             {props.decks.map((deck) => (
               <ListGroupItem className="d-flex justify-content-center">
-                <div style={{ width: '50%' }}>
+                <div style={{ width: '75%' }}>
                   <h6>{deck.deckName}</h6>
                 </div>
 
                 <div
-                  style={{ width: '50%', textAlign: 'end' }}
+                  style={{ width: '25%' }}
                   className="d-flex justify-content-end"
                 >
+                  <span>
+                    Cards:{' '}
+                    {
+                      props.cards.filter((card) => card.deck === deck._id)
+                        .length
+                    }
+                  </span>
                   {props.cards.filter((card) => card.deck === deck._id).length >
                     0 && (
                     <StudyModal
@@ -33,13 +40,6 @@ function DeckList(props) {
                       )}
                     ></StudyModal>
                   )}
-                  <span className="ms-3">
-                    Cards:{' '}
-                    {
-                      props.cards.filter((card) => card.deck === deck._id)
-                        .length
-                    }
-                  </span>
                   <div className="ms-3">
                     <ActionMenu
                       deck={{

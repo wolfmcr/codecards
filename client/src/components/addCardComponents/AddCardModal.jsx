@@ -10,7 +10,7 @@ import {
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardActions';
-import CreateCard from './CreateCard';
+import BlankCard from './BlankCard';
 import Plus from 'bootstrap-icons/icons/plus-circle.svg';
 import { Form, Field } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
@@ -19,7 +19,7 @@ import CodeBlockInput from './inputs/CodeBlockInput';
 import TextInput from './inputs/TextInput';
 import ModalCloseBtn from '../ModalCloseBtn';
 
-function CardModal(props) {
+function AddCardModal(props) {
   const handleSubmit = (values) => {
     props.addCard(values);
     props.toggle();
@@ -83,7 +83,7 @@ function CardModal(props) {
                   />
                 </div>
                 <div className={'d-flex justify-content-between flex-row '}>
-                  <CreateCard
+                  <BlankCard
                     title="Front"
                     addCode={() => {
                       if (values.front.length < 3) {
@@ -127,8 +127,8 @@ function CardModal(props) {
                         ))
                       }
                     </FieldArray>
-                  </CreateCard>
-                  <CreateCard
+                  </BlankCard>
+                  <BlankCard
                     title="Back"
                     addCode={() => {
                       if (values.back.length < 3) {
@@ -172,7 +172,7 @@ function CardModal(props) {
                         ))
                       }
                     </FieldArray>
-                  </CreateCard>
+                  </BlankCard>
                 </div>
                 <Button type="submit" color="success">
                   Add Card
@@ -191,4 +191,4 @@ const mapStateToProps = (state) => ({
   decks: state.auth.user.decks
 });
 
-export default connect(mapStateToProps, { addCard })(CardModal);
+export default connect(mapStateToProps, { addCard })(AddCardModal);

@@ -9,7 +9,7 @@ import {
 
 import React from 'react';
 
-export default function CreateCard(props) {
+export default function BlankCard(props) {
   return (
     <Card
       style={{ minHeight: '66vh', width: '45%' }}
