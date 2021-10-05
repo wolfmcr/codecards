@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import StudyModal from '../study/StudyModal';
-import NewDeckModal from '../deckFormComponents/NewDeckModal';
+import NewDeckModal from '../addDeckComponents/NewDeckModal';
 import { connect } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import DeleteDeckModal from './DeleteDeckModal';
-import { deleteDeck } from '../../actions/deckActions';
+
+import ActionMenu from './actionMenu/ActionMenu';
+
 function DeckList(props) {
   useEffect(() => {}, [props.decks, props.cards]);
   return (
@@ -15,36 +16,37 @@ function DeckList(props) {
           <ListGroup>
             {props.decks.map((deck) => (
               <ListGroupItem className="d-flex justify-content-center">
-                <div style={{ width: '50%' }}>
+                <div style={{ width: '75%' }}>
                   <h6>{deck.deckName}</h6>
                 </div>
 
                 <div
-                  style={{ width: '50%', textAlign: 'end' }}
+                  style={{ width: '25%' }}
                   className="d-flex justify-content-end"
                 >
-                  {props.cards.filter((card) => card.deck === deck._id).length >
-                    0 && (
-                    <StudyModal
-                      deck={deck.deckName}
-                      card={props.cards.filter(
-                        (card) => card.deck === deck._id
-                      )}
-                    ></StudyModal>
-                  )}
-                  <span className="ms-3">
+                  <span>
                     Cards:{' '}
                     {
                       props.cards.filter((card) => card.deck === deck._id)
                         .length
                     }
                   </span>
-                  <div className="ms-3">
-                    <DeleteDeckModal
+                  {props.cards.filter((card) => card.deck === deck._id).length >
+                    0 && (
+                    <StudyModal
                       deck={deck.deckName}
-                      deleteDeck={props.deleteDeck}
-                      deckId={deck._id}
-                    ></DeleteDeckModal>
+                      cardArray={props.cards.filter(
+                        (card) => card.deck === deck._id
+                      )}
+                    ></StudyModal>
+                  )}
+                  <div className="ms-3">
+                    <ActionMenu
+                      deck={{
+                        name: deck.deckName,
+                        id: deck._id
+                      }}
+                    ></ActionMenu>
                   </div>
                 </div>
               </ListGroupItem>
@@ -65,4 +67,4 @@ const mapStateToProps = (state) => ({
   cards: state.auth.user.cards
 });
 
-export default connect(mapStateToProps, { deleteDeck })(DeckList);
+export default connect(mapStateToProps)(DeckList);

@@ -11,10 +11,10 @@ import {
 import { useState } from 'react';
 import logo from '../img/whitelogo.svg';
 import fullLogo from '../img/white.svg';
-import CardModal from '../components/cardFormComponents/CardModal';
-import RegisterModal from './auth/RegisterModal';
-import LoginModal from './auth/LoginModal';
-import Logout from './auth/Logout';
+
+import RegisterModal from './authComponents/RegisterModal';
+import LoginModal from './authComponents/LoginModal';
+import Logout from './authComponents/Logout';
 import { connect } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 
@@ -30,11 +30,6 @@ function AppNavbar(props) {
     <>
       <NavItem>
         {props.auth.user && <NavLink>Hi {props.auth.user.name} </NavLink>}
-      </NavItem>
-      <NavItem onClick={mobile ? toggle : null}>
-        <CardModal
-          card={props.auth.isAuthenticated ? props.auth.user.cards : null}
-        />
       </NavItem>
       <NavItem onClick={mobile ? toggle : null}>
         <Logout></Logout>

@@ -45,3 +45,7 @@ body {
   width: 100%;
   padding: 1rem;
 }
+
+.actionIcon {
+  height: 20px;
+}
