@@ -3,8 +3,9 @@ import StudyModal from '../study/StudyModal';
 import NewDeckModal from '../deckFormComponents/NewDeckModal';
 import { connect } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import DeleteDeckModal from './DeleteDeckModal';
-import { deleteDeck } from '../../actions/deckActions';
+
+import ActionMenu from './actionMenu/ActionMenu';
+
 function DeckList(props) {
   useEffect(() => {}, [props.decks, props.cards]);
   return (
@@ -40,11 +41,12 @@ function DeckList(props) {
                     }
                   </span>
                   <div className="ms-3">
-                    <DeleteDeckModal
-                      deck={deck.deckName}
-                      deleteDeck={props.deleteDeck}
-                      deckId={deck._id}
-                    ></DeleteDeckModal>
+                    <ActionMenu
+                      deck={{
+                        name: deck.deckName,
+                        id: deck._id
+                      }}
+                    ></ActionMenu>
                   </div>
                 </div>
               </ListGroupItem>
@@ -65,4 +67,4 @@ const mapStateToProps = (state) => ({
   cards: state.auth.user.cards
 });
 
-export default connect(mapStateToProps, { deleteDeck })(DeckList);
+export default connect(mapStateToProps)(DeckList);

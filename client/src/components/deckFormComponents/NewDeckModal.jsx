@@ -23,7 +23,7 @@ function NewDeckModal(props) {
   return (
     <div>
       <Button color="dark" className="mt-3" onClick={toggle}>
-        +
+        Add Deck
       </Button>
       <Modal isOpen={isOpen} toggle={toggle}>
         <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>

@@ -142,7 +142,7 @@ module.exports = [
       },
       {
         type: 'text',
-        text: "The OR '||' operator evaluates from left to right and converts each operand to a boolean. If the result is true, it stops and returns the original value. If all were false it returns the last.\n\nThe AND '&&' operator returns true if both operands are true and false otherwise.\n\nThe NOT '!' operator converts the value to a boolean and returns the inverse."
+        text: "The OR '||' operator evaluates from left to right and converts each operand to a boolean. If the result is true, it stops and returns the original value. If all were false it returns the last.\n\nThe AND '&&' operator returns true if both operands are true, and returns false otherwise.\n\nThe NOT '!' operator converts the value to a boolean and returns the inverse."
       }
     ],
     deck: ''
@@ -152,7 +152,7 @@ module.exports = [
     front: [
       {
         type: 'text',
-        text: 'Comparison in JavaScript can be frustrating sometimes... What are the outputs of the logs below? Why would they be different?'
+        text: 'What are the outputs of the logs below? Why would they be different?'
       },
       {
         type: 'code',

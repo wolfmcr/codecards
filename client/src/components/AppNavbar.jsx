@@ -32,11 +32,6 @@ function AppNavbar(props) {
         {props.auth.user && <NavLink>Hi {props.auth.user.name} </NavLink>}
       </NavItem>
       <NavItem onClick={mobile ? toggle : null}>
-        <CardModal
-          card={props.auth.isAuthenticated ? props.auth.user.cards : null}
-        />
-      </NavItem>
-      <NavItem onClick={mobile ? toggle : null}>
         <Logout></Logout>
       </NavItem>
     </>

@@ -11,7 +11,7 @@ import {
 import { connect } from 'react-redux';
 import { addCard } from '../../actions/cardActions';
 import CreateCard from './CreateCard';
-import { useState } from 'react';
+import Plus from 'bootstrap-icons/icons/plus-circle.svg';
 import { Form, Field } from 'react-final-form';
 import arrayMutators from 'final-form-arrays';
 import { FieldArray } from 'react-final-form-arrays';
@@ -20,29 +20,29 @@ import TextInput from './inputs/TextInput';
 import ModalCloseBtn from '../ModalCloseBtn';
 
 function CardModal(props) {
-  const [isOpen, setOpen] = useState(false);
-
-  const toggle = () => {
-    setOpen(!isOpen);
-  };
-
   const handleSubmit = (values) => {
     props.addCard(values);
-    toggle();
+    props.toggle();
   };
 
   return (
     <div>
-      <NavLink color="dark" onClick={toggle}>
+      {/* <NavLink color="dark" onClick={props.toggle}>
         Add Card
-      </NavLink>
-
+      </NavLink> */}
+      <div className="d-flex">
+        <img src={Plus} alt="" srcset="" className="me-2 actionIcon" />
+        <span style={{ verticalAlign: 'baseline' }}>Add a Card</span>
+      </div>
       <Modal
-        isOpen={isOpen}
-        toggle={toggle}
+        isOpen={props.isOpen}
+        toggle={props.toggle}
         style={{ width: '90vw', maxWidth: '1500px' }}
       >
-        <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
+        <ModalHeader
+          toggle={props.toggle}
+          close={<ModalCloseBtn onClick={props.toggle} />}
+        >
           <h4 className="text-pink">Add a new card</h4>
         </ModalHeader>
         <ModalBody className="pt-1">
@@ -53,7 +53,7 @@ function CardModal(props) {
               language: 'javascript',
               front: [],
               back: [],
-              deck: props.decks[0] ? props.decks[0]._id : null
+              deck: props.deck.id
             }}
             render={({
               handleSubmit,
@@ -177,6 +177,7 @@ function CardModal(props) {
                 <Button type="submit" color="success">
                   Add Card
                 </Button>
+                {/* <pre>{JSON.stringify(values, null, 2)}</pre> */}
               </form>
             )}
           />

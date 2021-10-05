@@ -1,34 +1,31 @@
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
 import Trash from 'bootstrap-icons/icons/trash-fill.svg';
-import { useState } from 'react';
+import { deleteDeck } from '../../actions/deckActions';
+import { connect } from 'react-redux';
 
-export default function DeleteDeckModal(props) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
-
+function DeleteDeckModal(props) {
   const handleDeleteClick = () => {
-    props.deleteDeck(props.deckId);
-    toggle();
+    props.deleteDeck(props.deck.id);
+    props.toggle();
   };
   return (
     <div>
-      <img src={Trash} alt="" onClick={toggle} />
-
-      <Modal isOpen={isOpen}>
+      <div className="d-flex">
+        <img src={Trash} alt="" className="me-2 actionIcon" />
+        <span>Delete Deck</span>
+      </div>
+      <Modal isOpen={props.isOpen}>
         <ModalBody>
-          <p className="text-center m-0 p-0">
-            Are you sure you want to delete <strong>{props.deck}</strong>?
-          </p>{' '}
-          <p className="text-center m-0 p-0">This action is irreversible.</p>
+          <p className="text-center m-0 p-2">
+            Are you sure you want to delete <strong>{props.deck.name}</strong>{' '}
+            and all it's associated cards? This action is irreversible.
+          </p>
         </ModalBody>
         <ModalFooter className="d-flex justify-content-center p-0">
           <Button color="danger" onClick={handleDeleteClick}>
             Delete
           </Button>
-          <Button color="primary" onClick={toggle}>
+          <Button color="primary" onClick={props.toggle}>
             Cancel
           </Button>
         </ModalFooter>
@@ -36,3 +33,7 @@ export default function DeleteDeckModal(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, { deleteDeck })(DeleteDeckModal);

@@ -45,7 +45,7 @@ export default function CardSide(props) {
       style={
         props.mobile
           ? { minHeight: '80vh' }
-          : { maxHeight: '800px', height: '80vh' }
+          : { maxHeight: '800px', height: '80vh', overflow: 'auto' }
       }
     >
       <>
