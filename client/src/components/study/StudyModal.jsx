@@ -7,14 +7,31 @@ import { connect } from 'react-redux';
 
 function StudyModal(props) {
   const mobile = useMediaQuery('(max-width: 600px)');
+
+  //Nested Modal States
   const [isOpen, setIsOpen] = useState(false);
   const [editIsOpen, setEditIsOpen] = useState(false);
   const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
-  const toggle = () => {
-    setIsOpen(!isOpen);
+  //Card State
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentCard, setCurrentCard] = useState(props.cardArray[0]);
+  const nextCard = () => {
+    if (currentIndex < props.cardArray.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+      setCurrentCard(props.cardArray[currentIndex + 1]);
+    } else {
+      toggle();
+    }
   };
 
+  const toggle = () => {
+    setCurrentCard(props.cardArray[0]);
+    setCurrentIndex(0);
+
+    setIsOpen(!isOpen);
+  };
+  console.log(props);
   const toggleDelete = () => {
     setDeleteIsOpen(!deleteIsOpen);
   };
@@ -50,11 +67,17 @@ function StudyModal(props) {
         >
           {props.deck}
         </ModalHeader>
-        <ModalBody className="d-flex justify-content-center">
+        <ModalBody
+          className="d-flex justify-content-center"
+          style={{ overflowX: 'hidden' }}
+        >
           <StudyCard
             mobile={mobile}
-            card={props.card}
+            cardArray={props.cardArray}
+            currentCard={currentCard}
             toggle={toggle}
+            currentIndex={currentIndex}
+            nextCard={nextCard}
           ></StudyCard>
         </ModalBody>
       </Modal>
@@ -62,8 +85,4 @@ function StudyModal(props) {
   );
 }
 
-const mapStateToProps = (state) => ({
-  // card: state.card
-});
-
-export default connect(mapStateToProps)(StudyModal);
+export default StudyModal;

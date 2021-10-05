@@ -1,5 +1,6 @@
 import React from 'react';
 import StudyCard from './study/studyCards/StudyCard';
+import { Card, CardBody, CardFooter } from 'reactstrap';
 import Footer from './Footer';
 import { useMediaQuery } from '@mui/material';
 
@@ -42,12 +43,19 @@ export default function Landing() {
         </p>
       </div>
       <div className={mobile ? 'landing-right' : 'landing-right w-50'}>
-        <StudyCard
-          card={exampleCard}
-          mobile={false}
-          landing={true}
-          disableMenu={true}
-        />
+        <Card
+          style={
+            mobile
+              ? { minHeight: '80vh' }
+              : { maxHeight: '800px', height: '80vh', overflow: 'auto' }
+          }
+        >
+          <CardBody className="d-flex flex-column"></CardBody>
+          <CardFooter
+            className="d-flex justify-content-center"
+            style={{ justifySelf: 'end' }}
+          ></CardFooter>
+        </Card>
       </div>
     </div>
   );

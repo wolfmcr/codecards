@@ -1,4 +1,4 @@
-import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 
 export default function DeleteCardModal({ state }) {
   return (
@@ -7,8 +7,16 @@ export default function DeleteCardModal({ state }) {
         x
       </Button>
       <Modal isOpen={state.isOpen}>
-        <ModalHeader toggle={state.toggle}>Delete?</ModalHeader>
-        <ModalBody>Delete???</ModalBody>
+        <ModalBody className="text-center">
+          <p className="m-0">Are you sure you want to delete this card?</p>
+          <p className="m-0">This action is irreversible.</p>
+        </ModalBody>
+        <ModalFooter className="d-flex justify-content-center">
+          <Button color="danger">Delete</Button>
+          <Button color="primary" onClick={state.toggle}>
+            Cancel
+          </Button>
+        </ModalFooter>
       </Modal>
     </div>
   );

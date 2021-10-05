@@ -35,7 +35,7 @@ function DeckList(props) {
                     0 && (
                     <StudyModal
                       deck={deck.deckName}
-                      card={props.cards.filter(
+                      cardArray={props.cards.filter(
                         (card) => card.deck === deck._id
                       )}
                     ></StudyModal>

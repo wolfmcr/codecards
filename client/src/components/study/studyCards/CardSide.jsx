@@ -7,15 +7,11 @@ import StudyText from './StudyText';
 
 import './studyCard.css';
 export default function CardSide(props) {
-  const [fade, setFade] = useState(false);
-
   const flip = () => {
-    setFade(!fade);
     props.flipCard();
   };
 
   const next = () => {
-    setFade(!fade);
     props.nextCard();
   };
 
@@ -48,25 +44,27 @@ export default function CardSide(props) {
           : { maxHeight: '800px', height: '80vh', overflow: 'auto' }
       }
     >
-      <>
-        <CardBody className="d-flex flex-column">
-          {props.card[props.side].map((el) => (
-            <>
-              {el.type === 'code' ? (
-                <StudyCode value={el['code']} />
-              ) : (
-                <StudyText value={el['text']} />
-              )}
-            </>
-          ))}
-        </CardBody>
-        <CardFooter
-          className="d-flex justify-content-center"
-          style={{ justifySelf: 'end' }}
-        >
-          {props.side === 'front' ? frontButtons : backButtons}
-        </CardFooter>
-      </>
+      {props.card && (
+        <>
+          <CardBody className="d-flex flex-column">
+            {props.card[props.side].map((el) => (
+              <>
+                {el.type === 'code' ? (
+                  <StudyCode value={el['code']} />
+                ) : (
+                  <StudyText value={el['text']} />
+                )}
+              </>
+            ))}
+          </CardBody>
+          <CardFooter
+            className="d-flex justify-content-center"
+            style={{ justifySelf: 'end' }}
+          >
+            {props.side === 'front' ? frontButtons : backButtons}
+          </CardFooter>
+        </>
+      )}
     </Card>
   );
 }
