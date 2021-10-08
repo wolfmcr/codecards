@@ -4,7 +4,7 @@ CodeCards is a simple flash-card creator and storage solution for people learnin
 
 **Link to project:** [CodeCards](https://ef3mgnixpk.us-west-2.awsapprunner.com)
 
-![CodeCards Home Page](https://ibb.co/ChTH7m8)
+![CodeCards Home Page](https://i.ibb.co/Pwf6hFj/Code-Cards-Home-Page.jpg)
 
 ## How It's Made:
 
@@ -22,16 +22,4 @@ The next steps for this project would be:
 
 ## Lessons Learned:
 
-No matter what your experience level, being an engineer means continuously learning. Every time you build something you always have those _whoa this is awesome_ or _fuck yeah I did it!_ moments. This is where you should share those moments! Recruiters and interviewers love to see that you're self-aware and passionate about growing.
-
 A major takeaway from this project for me is state management. I've heard Redux described as too complicated or confusing but without it, state management would have been far more difficult. This is one of the largest applications I have built by myself and about halfway through I began feeling overwhelmed by the file structure but I was able to find some sense of balance by splitting my components and chunking out my focused tasks.
-
-## Examples:
-
-Take a look at these couple examples that I have in my own portfolio:
-
-**Palettable:** https://github.com/alecortega/palettable
-
-**Twitter Battle:** https://github.com/alecortega/twitter-battle
-
-**Patch Panel:** https://github.com/alecortega/patch-panel
