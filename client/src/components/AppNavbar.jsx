@@ -9,7 +9,6 @@ import {
   Container
 } from 'reactstrap';
 import { useState } from 'react';
-import logo from '../img/whitelogo.svg';
 import fullLogo from '../img/white.svg';
 
 import RegisterModal from './authComponents/RegisterModal';
@@ -29,7 +28,9 @@ function AppNavbar(props) {
   const authLinks = (
     <>
       <NavItem>
-        {props.auth.user && <NavLink>Hi {props.auth.user.name} </NavLink>}
+        {props.auth.user && (
+          <NavLink className="actionLink">Hi {props.auth.user.name} </NavLink>
+        )}
       </NavItem>
       <NavItem onClick={mobile ? toggle : null}>
         <Logout></Logout>
@@ -50,7 +51,7 @@ function AppNavbar(props) {
 
   return (
     <div>
-      <Navbar color="dark" dark expand="sm" className="mb-5 ">
+      <Navbar color="dark" dark expand="sm" className=" ">
         <Container className="d-flex ">
           <NavbarBrand>
             <img

@@ -16,5 +16,5 @@
 }
 .studyCard-enter-active,
 .studyCard-exit-active {
-  transition: opacity 500ms, transform 500ms ease-out;
+  transition: opacity 500ms, transform 500ms ease-in-out;
 }

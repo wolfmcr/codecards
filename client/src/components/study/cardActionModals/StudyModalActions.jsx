@@ -2,16 +2,24 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import DeleteCardModal from './DeleteCardModal';
 import EditCardModal from './EditCardModal';
+import { connect } from 'react-redux';
+import { toggleStudyModal } from '../../../actions/studyActions';
 
-export default function StudyModalActions({ modals }) {
+function StudyModalActions({ toggleStudyModal }) {
   return (
     <div className="d-flex">
-      <EditCardModal color="primary" state={modals.edit} />
+      <EditCardModal />
 
-      <DeleteCardModal state={modals.delete} />
-      <Button color="dark" onClick={modals.close}>
+      <DeleteCardModal />
+      <Button color="dark" onClick={toggleStudyModal}>
         Close
       </Button>
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({ study: state.study });
+
+export default connect(mapStateToProps, { toggleStudyModal })(
+  StudyModalActions
+);

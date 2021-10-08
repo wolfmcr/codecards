@@ -6,7 +6,7 @@ const initState = {
   id: null
 };
 
-export default function (state = initState, action) {
+export default function error(state = initState, action) {
   switch (action.type) {
     case GET_ERRORS:
       return {

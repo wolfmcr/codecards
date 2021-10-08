@@ -5,7 +5,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from 'reactstrap';
-import DeleteDeckModal from '../DeleteDeckModal';
+import DeleteDeckModal from './DeleteDeckModal';
 import AddCardModal from '../../addCardComponents/AddCardModal';
 
 export default function ActionMenu(props) {
@@ -18,7 +18,6 @@ export default function ActionMenu(props) {
   };
 
   const toggleDeleteModal = () => {
-    console.log('ok');
     setDeleteModalOpen(!deleteModalOpen);
   };
 
@@ -28,14 +27,7 @@ export default function ActionMenu(props) {
   return (
     <div>
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-        <DropdownToggle
-          className="p-0 text-decoration-none"
-          tag="a"
-          style={{
-            userSelect: 'none',
-            cursor: 'pointer'
-          }}
-        >
+        <DropdownToggle className="p-0 text-decoration-none actionLink" tag="a">
           Actions
         </DropdownToggle>
         <DropdownMenu right>

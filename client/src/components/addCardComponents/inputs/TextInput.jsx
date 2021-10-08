@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, FormGroup, FormFeedback, Button } from 'reactstrap';
+import { Input, FormGroup, Button } from 'reactstrap';
 
 export default function TextInput(props) {
   const deleteClick = () => {

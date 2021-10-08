@@ -10,13 +10,17 @@ function Logout(props) {
   };
   return (
     <div>
-      <NavLink onClick={handleLogout}>Logout</NavLink>
+      <NavLink onClick={handleLogout} className="actionLink">
+        Logout
+      </NavLink>
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({});
 
-Logout.prototypes = {};
+Logout.prototypes = {
+  logout: PropTypes.func
+};
 
 export default connect(mapStateToProps, { logout })(Logout);

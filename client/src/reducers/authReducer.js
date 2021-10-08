@@ -8,8 +8,10 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   ADD_DECK,
+  DELETE_DECK,
   ADD_CARD,
-  DELETE_DECK
+  UPDATE_CARDS,
+  DELETE_CARD
 } from '../actions/types';
 
 const initState = {
@@ -19,7 +21,7 @@ const initState = {
   user: null
 };
 
-export default function (state = initState, action) {
+export default function auth(state = initState, action) {
   switch (action.type) {
     case USER_LOADING:
       return { ...state, isLoading: true };
@@ -56,11 +58,6 @@ export default function (state = initState, action) {
         ...state,
         user: { ...state.user, decks: action.payload }
       };
-    case ADD_CARD:
-      return {
-        ...state,
-        user: { ...state.user, cards: action.payload }
-      };
     case DELETE_DECK:
       return {
         ...state,
@@ -70,6 +67,19 @@ export default function (state = initState, action) {
           decks: action.payload.decks
         }
       };
+    case ADD_CARD:
+      return {
+        ...state,
+        user: { ...state.user, cards: action.payload }
+      };
+    case UPDATE_CARDS:
+      return { ...state, user: { ...state.user, cards: action.payload } };
+    case DELETE_CARD:
+      return {
+        ...state,
+        user: { ...state.user, cards: action.payload }
+      };
+
     default:
       return state;
   }

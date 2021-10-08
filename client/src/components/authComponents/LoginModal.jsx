@@ -6,7 +6,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Label,
   Input
 } from 'reactstrap';
 import PropTypes from 'prop-types';
@@ -37,7 +36,7 @@ function LoginModal(props) {
         toggle();
       }
     }
-  }, [props.error.msg, props.isAuthenticated]);
+  }, [props.error.msg, props.isAuthenticated, isOpen, props.error.id]);
 
   const handleSubmit = async (values) => {
     props.login(values);
@@ -45,7 +44,9 @@ function LoginModal(props) {
 
   return (
     <div>
-      <NavLink onClick={toggle}>Login</NavLink>
+      <NavLink onClick={toggle} className="actionLink">
+        Login
+      </NavLink>
       <Modal toggle={toggle} isOpen={isOpen}>
         <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
           Login
@@ -99,10 +100,10 @@ const mapStateToProps = (state) => ({
   error: state.error
 });
 
-// RegisterModal.propTypes = {
-//   isAuthenticated: PropTypes.bool,
-//   error: PropTypes.object.isRequired,
-//   clearErrors: PropTypes.func.isRequired
-// };
+LoginModal.propTypes = {
+  isAuthenticated: PropTypes.bool,
+  error: PropTypes.object.isRequired,
+  clearErrors: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, { login, clearErrors })(LoginModal);

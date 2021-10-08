@@ -3,11 +3,12 @@ import StudyModal from '../study/StudyModal';
 import NewDeckModal from '../addDeckComponents/NewDeckModal';
 import { connect } from 'react-redux';
 import { ListGroup, ListGroupItem } from 'reactstrap';
-
 import ActionMenu from './actionMenu/ActionMenu';
+import { toggleStudyModal } from '../../actions/studyActions';
 
 function DeckList(props) {
   useEffect(() => {}, [props.decks, props.cards]);
+
   return (
     <div>
       {props.decks[0] ? (
@@ -15,7 +16,10 @@ function DeckList(props) {
           <h3>Decks</h3>
           <ListGroup>
             {props.decks.map((deck) => (
-              <ListGroupItem className="d-flex justify-content-center">
+              <ListGroupItem
+                className="d-flex justify-content-center"
+                key={deck._id}
+              >
                 <div style={{ width: '75%' }}>
                   <h6>{deck.deckName}</h6>
                 </div>
@@ -25,7 +29,7 @@ function DeckList(props) {
                   className="d-flex justify-content-end"
                 >
                   <span>
-                    Cards:{' '}
+                    Cards: {/* consolidate callbacks */}
                     {
                       props.cards.filter((card) => card.deck === deck._id)
                         .length
@@ -33,20 +37,20 @@ function DeckList(props) {
                   </span>
                   {props.cards.filter((card) => card.deck === deck._id).length >
                     0 && (
-                    <StudyModal
-                      deck={deck.deckName}
-                      cardArray={props.cards.filter(
-                        (card) => card.deck === deck._id
-                      )}
-                    ></StudyModal>
+                    <a
+                      href="#"
+                      className="link-primary user-select-none text-decoration-none ms-3"
+                      style={{
+                        userSelect: 'none',
+                        cursor: 'pointer'
+                      }}
+                      onClick={() => props.toggleStudyModal(deck)}
+                    >
+                      Study
+                    </a>
                   )}
                   <div className="ms-3">
-                    <ActionMenu
-                      deck={{
-                        name: deck.deckName,
-                        id: deck._id
-                      }}
-                    ></ActionMenu>
+                    <ActionMenu deck={deck}></ActionMenu>
                   </div>
                 </div>
               </ListGroupItem>
@@ -58,6 +62,7 @@ function DeckList(props) {
       )}
 
       <NewDeckModal></NewDeckModal>
+      <StudyModal />
     </div>
   );
 }
@@ -67,4 +72,4 @@ const mapStateToProps = (state) => ({
   cards: state.auth.user.cards
 });
 
-export default connect(mapStateToProps)(DeckList);
+export default connect(mapStateToProps, { toggleStudyModal })(DeckList);

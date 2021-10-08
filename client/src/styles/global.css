@@ -49,3 +49,8 @@ body {
 .actionIcon {
   height: 20px;
 }
+
+.actionLink {
+  user-select: none;
+  cursor: pointer;
+}

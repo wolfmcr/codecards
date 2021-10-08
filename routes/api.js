@@ -15,6 +15,11 @@ router.post('/add-deck', auth, apiController.addDeck);
 router.delete('/delete-deck/:id', auth, apiController.deleteDeck);
 
 //@desc
-//@route /api/
+//@route /api/delete-card/:id
+router.delete('/delete-card/:id', auth, apiController.deleteCard);
+
+//@desc
+//@route /api/update-card/:id
+router.put('/update-card/:id', auth, apiController.updateCard);
 
 module.exports = router;
