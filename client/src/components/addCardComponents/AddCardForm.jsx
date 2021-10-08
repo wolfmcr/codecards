@@ -147,7 +147,6 @@ function AddCardForm(props) {
             <Button type="submit" color="success">
               {props.btnText}
             </Button>
-            <pre>{JSON.stringify(values, null, 2)}</pre>
           </form>
         )}
       />
