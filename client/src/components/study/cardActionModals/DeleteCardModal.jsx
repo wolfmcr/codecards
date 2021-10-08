@@ -1,19 +1,33 @@
-import { Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalFooter } from 'reactstrap';
+import { connect } from 'react-redux';
+import { removeCard } from '../../../actions/studyActions';
+import { toggleDeleteModal } from '../../../actions/studyActions';
+import Trash from 'bootstrap-icons/icons/trash-fill.svg';
 
-export default function DeleteCardModal({ state }) {
+function DeleteCardModal({ removeCard, toggleDeleteModal, study }) {
+  const handleDelete = () => {
+    removeCard(study.cardArr[study.currentIndex]._id);
+  };
   return (
     <div>
-      <Button color="danger" onClick={state.toggle} className="me-3">
-        x
+      <Button
+        outline
+        color="danger"
+        onClick={toggleDeleteModal}
+        className="me-3"
+      >
+        <img src={Trash} alt="" />
       </Button>
-      <Modal isOpen={state.isOpen}>
+      <Modal isOpen={study.deleteModal.isOpen}>
         <ModalBody className="text-center">
           <p className="m-0">Are you sure you want to delete this card?</p>
           <p className="m-0">This action is irreversible.</p>
         </ModalBody>
         <ModalFooter className="d-flex justify-content-center">
-          <Button color="danger">Delete</Button>
-          <Button color="primary" onClick={state.toggle}>
+          <Button color="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+          <Button color="primary" onClick={toggleDeleteModal}>
             Cancel
           </Button>
         </ModalFooter>
@@ -21,3 +35,11 @@ export default function DeleteCardModal({ state }) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  study: state.study
+});
+
+export default connect(mapStateToProps, { removeCard, toggleDeleteModal })(
+  DeleteCardModal
+);

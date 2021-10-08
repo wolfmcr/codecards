@@ -1,21 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
 
-import { FormGroup, Input, FormFeedback, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
 import 'codemirror/theme/3024-night.css';
-import 'codemirror/mode/xml/xml.js';
+import 'codemirror/mode/xml/xml';
 import 'codemirror/mode/javascript/javascript';
 import 'codemirror/mode/css/css';
 import 'codemirror/mode/htmlmixed/htmlmixed';
 export default function CodeBlockInput(props) {
-  let [code, setCode] = useState('//write some code');
-
-  const handleCodeChange = (editor, data) => {
-    setCode(editor.doc.getValue());
-  };
-
   return (
     <div className="mb-3" style={{ position: 'relative' }}>
       <Button
@@ -37,9 +31,6 @@ export default function CodeBlockInput(props) {
 
       <CodeMirror
         value={props.input.value}
-        // editorDidMount={(editor) => {
-        //   props.input.onChange('hi');
-        // }}
         options={{
           mode: 'javascript',
           theme: 'material',
@@ -48,66 +39,10 @@ export default function CodeBlockInput(props) {
         onBeforeChange={(a, b, c) => {
           props.input.onChange(c);
         }}
+        onDragOver={(e) => {
+          e.preventDefault();
+        }}
       />
     </div>
   );
 }
-
-// export default function CodeBlockInput() {
-//   let [code, setCode] = useState('//write some code\nconst good = "cool"');
-
-//   const handleChange = (event) => {
-//     console.log(event);
-//     setCode(event.target.value);
-//     console.log(code);
-//   };
-
-//   useEffect(() => {
-//     Prism.highlightAll();
-//   }, [code]);
-
-//   return (
-//     <div className="mb-5 Code">
-//       <pre
-//         style={{
-//           position: 'relative',
-//           minHeight: '3rem',
-//           height: 'fit-content',
-//           overflow: 'hidden',
-//           borderRadius: '4px'
-//         }}
-//       >
-//         <code
-//           className="language-javascript"
-//           style={{ minHeight: '2rem', height: '2rem' }}
-//         >
-//           {code}
-//         </code>
-//         <textarea
-//           cols={40}
-//           wrap="hard"
-//           style={{
-//             position: 'absolute',
-//             top: '16px',
-//             left: '16px',
-//             color: 'transparent',
-//             padding: '0 0 10px 0',
-
-//             background: 'transparent',
-//             border: 'none',
-//             width: '100%',
-
-//             maxWidth: '100%',
-//             minHeight: '2rem',
-//             height: '100%',
-//             caretColor: 'white',
-//             outline: 'none'
-//           }}
-//           value={code}
-//           onChange={handleChange}
-//           spellcheck="false"
-//         />
-//       </pre>
-//     </div>
-//   );
-// }

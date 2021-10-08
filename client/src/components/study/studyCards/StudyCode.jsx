@@ -23,7 +23,6 @@ export default function StudyCode(props) {
           className="studyCode"
           value={props.value}
           editorDidMount={(editor, doc) => {
-            console.log(editor);
             editor.doc.clearGutter();
           }}
           options={{

@@ -1,11 +1,11 @@
 import { Modal, ModalBody, ModalFooter, Button } from 'reactstrap';
 import Trash from 'bootstrap-icons/icons/trash-fill.svg';
-import { deleteDeck } from '../../actions/deckActions';
+import { deleteDeck } from '../../../actions/deckActions';
 import { connect } from 'react-redux';
 
 function DeleteDeckModal(props) {
   const handleDeleteClick = () => {
-    props.deleteDeck(props.deck.id);
+    props.deleteDeck(props.deck._id);
     props.toggle();
   };
   return (
@@ -17,8 +17,9 @@ function DeleteDeckModal(props) {
       <Modal isOpen={props.isOpen}>
         <ModalBody>
           <p className="text-center m-0 p-2">
-            Are you sure you want to delete <strong>{props.deck.name}</strong>{' '}
-            and all it's associated cards? This action is irreversible.
+            Are you sure you want to delete{' '}
+            <strong>{props.deck.deckName}</strong> and all it's associated
+            cards? This action is irreversible.
           </p>
         </ModalBody>
         <ModalFooter className="d-flex justify-content-center p-0">

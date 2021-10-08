@@ -6,7 +6,6 @@ import {
   Modal,
   ModalHeader,
   ModalBody,
-  Label,
   Input
 } from 'reactstrap';
 import ModalCloseBtn from '../ModalCloseBtn';
@@ -27,6 +26,7 @@ function RegisterModal(props) {
       setError(null);
     }
   };
+
   useEffect(() => {
     if (props.error.id === 'REGISTER_FAIL') {
       setError(props.error.msg.msg);
@@ -36,14 +36,16 @@ function RegisterModal(props) {
         toggle();
       }
     }
-  }, [props.error.msg, props.isAuthenticated]);
+  }, [props.error.msg, props.isAuthenticated, isOpen, props.error.id]);
 
   const handleSubmit = async (values) => {
     props.register(values);
   };
   return (
     <div>
-      <NavLink onClick={toggle}>Register</NavLink>
+      <NavLink onClick={toggle} className="actionLink">
+        Register
+      </NavLink>
       <Modal toggle={toggle} isOpen={isOpen}>
         <ModalHeader toggle={toggle} close={<ModalCloseBtn onClick={toggle} />}>
           Register

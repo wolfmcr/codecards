@@ -38,5 +38,27 @@ module.exports = {
     await user.save();
     //send back the modified cards + decks
     res.status(200).json({ cards: user.cards, decks: user.decks });
+  },
+  deleteCard: async (req, res) => {
+    let user = await User.findOne({ _id: req.user.id });
+
+    user.cards = user.cards.filter(
+      (card) => card._id.toString() !== req.params.id
+    );
+
+    await user.save();
+
+    res.status(200).json({ cards: user.cards });
+  },
+  updateCard: async (req, res) => {
+    let user = await User.findOne({ _id: req.user.id });
+    let cardIndex = user.cards
+      .map((card) => card._id.toString())
+      .indexOf(req.params.id);
+
+    user.cards[cardIndex] = req.body;
+    await user.save();
+
+    res.status(200).json({ cards: user.cards });
   }
 };

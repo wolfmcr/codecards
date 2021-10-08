@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-function ProtectedRoute({ path, children, render, isAuthenticated, ...rest }) {
+function ProtectedRoute(props) {
   return (
     <Route
-      path={path}
-      render={(props) => {
-        if (isAuthenticated) {
-          return children;
+      path={props.path}
+      render={() => {
+        if (props.auth.isAuthenticated) {
+          return props.children;
         } else {
           return <Redirect to="/" />;
         }
@@ -18,12 +17,8 @@ function ProtectedRoute({ path, children, render, isAuthenticated, ...rest }) {
   );
 }
 
-ProtectedRoute.propTypes = {
-  auth: PropTypes.object.isRequired
-};
-
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 export default connect(mapStateToProps)(ProtectedRoute);
