@@ -80,6 +80,8 @@ export const removeCard = (cardId) => (dispatch, getState) => {
       index -= 1;
     }
     dispatch({ type: NEXT_CARD, payload: cardArr });
+    deleteCard(cardId)(dispatch, getState);
+
     dispatch({ type: REMOVE_CARD, payload: { arr: cardArr, index: index } });
   }
 };
