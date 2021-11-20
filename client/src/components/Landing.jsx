@@ -7,7 +7,7 @@ import StudyCode from './study/studyCards/StudyCode';
 const landingPageCard = [
   {
     type: 'text',
-    text: "Whether you're a beginner or just freshening up your skills; CodeCards is the perfect study tool for programmers."
+    text: 'Create and study flashcards with CodeBlocks.'
   },
   {
     type: 'code',
@@ -15,7 +15,7 @@ const landingPageCard = [
   },
   {
     type: 'text',
-    text: 'Create and study flashcards with CodeBlocks.'
+    text: "Whether you're a beginner or just freshening up your skills; CodeCards is the perfect study tool for programmers."
   }
 ];
 

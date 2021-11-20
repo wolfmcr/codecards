@@ -61,7 +61,7 @@ module.exports = {
     });
   },
   login: async (req, res) => {
-    const { name, email, password } = req.body;
+    const { email, password } = req.body;
     //check all fields
     if (!email || !password) {
       return res.status(400).json({ msg: 'Enter All Fields' });
@@ -72,7 +72,7 @@ module.exports = {
         return res.status(400).json({ msg: 'User Does Not Exist' });
       }
 
-      //VAlidate Password
+      //Validate Password
       bcrypt.compare(password, user.password).then((isMatch) => {
         if (!isMatch) {
           return res.status(400).json({ msg: 'Invalid Credentials' });
@@ -108,6 +108,5 @@ module.exports = {
       .then((user) => {
         res.json(user);
       });
-  },
-  logout: async (req, res) => {}
+  }
 };
