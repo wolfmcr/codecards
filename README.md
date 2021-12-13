@@ -2,7 +2,7 @@
 
 CodeCards is a simple flash-card creator and storage solution for people learning to program. You can create your own decks, study them, edit your cards and delete them.
 
-**Link to project:** [CodeCards](https://ef3mgnixpk.us-west-2.awsapprunner.com)
+**Link to project:** [CodeCards](https://code-cards.herokuapp.com/)
 
 ![CodeCards Home Page](https://i.ibb.co/Pwf6hFj/Code-Cards-Home-Page.jpg)
 
